@@ -1,0 +1,235 @@
+
+# 간단한 실행 테스트
+# 주석 삽입 : ctrl + shift + c
+# 한줄 실행 : ctrl + enter
+print('Hello, R!')
+print('안녕, R!')
+# 여러줄에 걸쳐 입력
+print(
+  'Hello, R!'
+)
+# sample R script
+# 나이와 몸무게의 상관관계 파악
+# 벡터 형식을 이용해 데이터 정의 및 변수에 대입
+age <- c(1, 3, 5, 2, 11, 9, 3, 9, 12,3)
+weight <- c(4.4, 5.3, 7.2, 5.2, 8.5, 7.3, 6.0, 10.4, 10.2, 6.1)
+# 입력 값 확인
+age
+weight
+# 기초통계량 확인
+# 평균
+mean(age)
+mean(weight)
+# 표준편차
+sd(age)
+sd(weight)
+# 상관계수
+# 두 사건간의 연관성(선형관계) 조사
+# ex) GDP와 기대수명, 키와 몸무게의 관계
+cor(age, weight)
+# 그래프
+plot(age, weight)
+
+# 간단한 그래프 데모
+demo('graphics')
+
+
+# 도움말 함수
+help.start()
+# q에 대한 도움말
+help('q')
+?q
+
+help.search('q') # 특정 단어를 포함하는 도움말 검색
+RSiteSearch('q') # 웹상에서 도움말 검색
+apropose('q', mode = 'function') # 특정 단어가 포함된 함수를 찾아줌
+data() # 현재 설치된 패키지 상의 이용가능한 모든 자료집합 나열
+vignette() # 이용 가능한 모든 소품문을 나열(패키지에 대한 장문 도움말)
+
+# 작업공간 관련 함수
+getwd() # 현재 작업 디렉토리 출력
+setwd("c:/java") # 새로움 작업 디렉토리 설정
+ls() # 현재 작업공간의 모든 객체를 출력
+rm() # 하나 이상의 객체를 제거
+rm(age)
+rm(weight)
+ls()
+options() # 현재 작업공간에서 사용가능한 설정에 대한 정보 제공
+history() # 명령어 목록 출력
+history(5) # 끝에서 n개의 명령어 출력
+savehistory('c:/java/myhistory.abc') # 명령어 히스토리를 저장(.Rhistory)
+loadhistory('파일명') # 명령어 히스토리를 불러서 메모리에 적재재
+
+age <- c(1, 3, 5, 2, 11, 9, 3, 9, 12,3)
+save(age, file='c:/java/age.data') # 특정객체를 파일에 저장
+load('c:/java/age.data') # 파일을 작업공간으로 읽어들임
+setwd('c:/java')
+dir.create('xyz') # 특정 디렉토리 생성
+
+# sample R script 2
+setwd('c:/java')
+options('digits') # 소수점 출력 자릿수(기본 7)
+options(digits = 3) # 7 너무 기니까 3으로 줄임
+options('digits')
+x<-runif(20) # 20개의 임의의 난수 생성
+summary(x) # 기초통계량 출력(최대/최소, 평균, 중간, 최빈, 사분위)
+hist(x) # 히스토그램 출력
+
+
+# 패키지 - 일정 규칙에 따라 누구나 제작하고 배포 가능하다는 장점 때문에 수천가지 패키지 제공
+.libPaths() # 패키지 설치정보 확인
+installed.packages() # 설치되어 있는 패키지 확인
+library(help='datasets') # 특정 패키지에 대한 정보 확인
+
+# datasets 패키지의 HairEyeColor를 사용하려면
+library('datasets')
+HairEyeColor
+
+insatll.packages('패키지명') # 특정 패키지 설치
+insatll.packages('rJava')
+update.packages() # 패키지 업데이트 하기
+remove.packages('패키지명') # 특정 패키지를 제거
+
+# 패키지 설치는 한번만, 라이브러리 적재는 매번 해야함
+# base system 패키지 : 라이브러리 명령 없이 사용 가능한 함수
+
+# vcd 패키지 설치
+install.packages('vcd')
+# vcd 패키지에서 사용 가능한 함수와 데이터집합 확인
+library(help='vcd')
+# vcd 패키지 적재 후 Arthritis 데이터집합 확인
+library('vcd')
+summary('Arthritis')
+# Arthritis 데이터 집합을 출력하라
+print(Arthritis)
+Arthritis # 둘다 가능
+# Arthritis 예제를 실행하라
+example('Arthritis')
+plot(Arthritis)
+
+# 변수 : 알파벳, 숫자, _, .으로 구성
+# 첫 글자는 문자나 .으로 시작할 것
+a <- 1
+b1 <- 2
+.x <- 3
+3c <- 4 # 잘못 된 변수명
+.4 <- 5 # 잘못 된 변수명
+
+# 변수할당 : <- (추천), <<-, =
+# 변수명을 입력하면 변수의 값을 출력
+a
+b1
+.x
+
+# 데이터집합 : 행(관측값, 레코드, 사례), 열(변수, 필드, 속성)로 이루어진 2차원 배열
+# R에서 데이터를 생성하려면 스칼라, 벡터, 배열, 데이터프레임, 리스트 등의 다양한 자료구조 사용
+# R에서 다룰 수 있는 데이터의 유형은 숫자, 문자, 논리, 복소수 등이 있음
+# 벡터 : 숫자, 문자, 논리형 데이터들로 구성된 1차원 배열
+# 스칼라 : 요소가 하나만 존재하는 벡터
+# 벡터안의 자료는 반드시 단일 유형이어야 함
+
+a <- 3 # 스칼라 유형
+b <- 4.5
+c <- a + b # 산술연산자 사용가능
+d <- 'hello, world' # 문자형은 '', ""로 묶어야함
+e <- c(1, 2, 3, 4, 5, -9, -8, -7, -6) # 숫자
+f <- c('one', 'two', 'three', '가', '나', '다') # 문자
+g <- c(TRUE, FALSE, T, F, false, true)  # 논리값(false, true는 안됨)
+h <- c("9", 8, "7") # 벡터는 단일 유형만 저장 가능 - 모두 문자로 저장!
+i <- c(1, "2", 3)
+j <- c(9, 8, 7, c(1, 2, 3)) # 벡터를 중첩으로 저장하면 1차원으로 자동 변환
+k <- 1:10 # 숫자 데이터형의 경우 '시작값:끝값' 형태로 값 생성 가능
+l <- seq(1, 10) # seq(시작, 끝, 간격) 함수
+m <- seq(1, 10, 2)
+n <- rep(1:2, 3) # rep(값, 반복) 함수
+o <- rep(1:2, each=5)
+e[3] # []를 이용해서 벡터 / 스칼라의 요소를 출력
+e[-3] # 위치값이 음수라면 - 해당 요소를 제외
+e[c(1, 5, 7)] # 무작위 위치값을 벡터에 저장해서 검색
+e[2:6] # 위치값을 범위로 지정 - '시작값 : 끝값'
+
+seq(0, 1, by=0.001)
+seq(0, 1, length.out=1000)
+
+rep(c(1, 2, 3), times=2)
+rep(c(1, 2, 3), each=2)
+length(m)
+
+# 비교연산자 : <, >, !=, ==
+ex <- c(1, 3, 5, 7, 9, NA) # 데이터 값이 존재하지 않을 경우 NA
+ans <- ex < 5
+print(ans)
+
+# 산술 연산자 : +, -, *, /, %%, %/%
+ex - 5
+ex %% 5
+# 논리 연산자 : &, |, !, &&, ||
+c(T, F) & c(F, T) # 벡터의 각 원소간 연산 처리
+c(T, F) && c(F, T) # 단일 논리값을 계산(단축식 평가 지원)
+
+ex[0] # 벡터의 위치값은 특이하게 1부터 시작함(0 아님!)
+is.na(ex[6]) # 요소가 NA인지 검사
+
+x <- NULL # 변수를 선언할 뿐 초기화하지 않는 경우 NULL 사용
+is.null(x)
+in.null(1)
+is.null(NA)
+
+# matrix : 벡터의 2차원 배열 - 동일한 유형의 원소들로 구성
+# 1행은 숫자, 2행은 문자 같은 구성 불가
+matrix(벡터, nrow=숫자, ncol=숫자)
+
+a <- matrix(c(1, 2, 3, 4, 5, 6, 7, 8, 9), nrow=3) # 행우선
+b <- matrix(c(1, 2, 3, 4, 5, 6, 7, 8, 9), ncol=3) # 열우선
+a <- matrix(1:20, nrow=5, ncol=4)
+
+cells <- c(1, 35, 67, 99)
+rnames <- c('r1', 'r2')
+cnames <- c('c1', 'c2')
+d <- matrix(cells, nrow=2, ncol=2, byrow=T, dimnames=list(rnames, cnames))
+d <- matrix(cells, nrow=2, ncol=2, byrow=F, dimnames=list(rnames, cnames))
+
+# 행렬의 각 요소는 '행렬이름[행, 열]'로 접근 가능
+# imnames()로 행과 열에 이름을 부여했다면 부여한 이름으로 접근가능
+d['r1',] # 1행만 출력
+d[,'c2'] # 2열만 출력
+d[1,]
+d[,2]
+d[2, 2] # 2행 2열 출력
+
+dim(d) # 행렬의 차원을  출력
+ncol(d) # 행렬의 열 기준 차원 출력
+nrow(d) # 행렬의 행 기준 차원 출력
+solve(d) # 역행렬
+t(d) # 전치행렬
+
+# array : n차원 행렬(벡터, 차원, 행렬이름)
+# (2 * 3 * 4) 3차원 행렬 생성
+dim1 <- c("A1", "A2")
+dim2 <- c("B1", "B2", "B3")
+dim3 <- c("C1", "C2", "C3", "C4")
+z <- array(1:24, c(2, 3, 4), dimnames=list(dim1, dim2, dim3))
+
+z[1, 1, 1]
+z[1, 2, 3]
+z[, , 3]
+dim(z)
+
+# 데이터 프레임 dataframe : 열마다 서로 다른 유형을 가질 수 있는 자료구조
+# 다양한 변수, 관측치, 범주(팩터)를 표현하기 위한 자료구조
+# data.frame(열1, 열2, 열3)
+
+x <- c(1, 2, 3, 4, 5) # 첫 번째 열 정의
+y <- c('a', 'b', 'c', 'd', 'e') # 두 번째 열 정의
+z <- c(T, F, T, T, T) # 세 번째 열 정의
+s <- data.frame(x, y, z)
+str(s) # 작업공간에 생성된 객체들의 구조 확인
+s$x # '데이터프레임 이름$열이름' 형식으로 접근 가능
+s[1, ] # 칼럼의 차원이 1이 되면 벡터값으로 자동 변환
+s[, c('x', 'y')]
+s[, c('x')]
+s[, c('x'), drop=F] # 자동으로 벡터로 변환되는 것을 방지하려면 drop=F 사용
+
+x <- data.frame(x=1:1000)
+head(x) # 데이터의 앞부분을 살펴봄
+tail(x) # 데이터의 뒷부분을 살펴봄
